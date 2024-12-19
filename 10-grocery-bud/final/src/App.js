@@ -15,6 +15,8 @@ function App() {
   const [isEditing, setIsEditing] = useState(false);
   const [editID, setEditID] = useState(null);
   const [alert, setAlert] = useState({ show: false, msg: '', type: '' });
+  const inputRef = useRef();
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!name) {
@@ -61,6 +63,7 @@ function App() {
   useEffect(() => {
     localStorage.setItem('list', JSON.stringify(list));
   }, [list]);
+
   return (
     <section className='section-center'>
       <form className='grocery-form' onSubmit={handleSubmit}>
@@ -69,6 +72,7 @@ function App() {
         <h3>grocery bud</h3>
         <div className='form-control'>
           <input
+          ref={inputRef}
             type='text'
             className='grocery'
             placeholder='e.g. eggs'
